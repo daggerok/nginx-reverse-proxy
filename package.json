@@ -12,7 +12,7 @@
     "@types/node": "8.0.47"
   },
   "scripts": {
-    "start": "forever start app/index.js >> app.log",
+    "start": "forever stopall; forever -o logs-out.log -e logs-err.log app >> logs-forever.log",
     "stop": "forever stopall"
   }
 }
