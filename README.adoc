@@ -1,4 +1,4 @@
-= nginx reverse proxy | redirect port
+= nginx reverse proxy | redirect port image:https://travis-ci.org/daggerok/nginx-reverse-proxy.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/nginx-reverse-proxy"]
 
 .This repository contains simple example of nginx reverse-proxy / http port forwarding to node 3000
 [source,bash]
