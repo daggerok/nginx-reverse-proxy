@@ -1,0 +1,15 @@
+= nginx reverse proxy | redirect port
+
+.This repository contains simple example of nginx reverse-proxy / http port forwarding to node 3000
+[source,bash]
+----
+  internet <-> [nginx :80] <-> [node :3000]
+----
+
+.build and run using docker
+[source,bash]
+----
+docker build -t ololo . --no-cache
+docker run --rm -d -p 80:80 --name ololo ololo
+curl localhost/
+----
