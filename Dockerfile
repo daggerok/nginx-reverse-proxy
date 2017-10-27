@@ -4,7 +4,13 @@ MAINTAINER Maksim Kostromin https://github.com/daggerok
 CMD service nginx restart; npm start
 
 RUN apt update \
- && apt install -y nginx nodejs npm unattended-upgrades
+ && apt install -y \
+    nginx \
+    nodejs npm \
+    unattended-upgrades \
+    fail2ban # && cp -Rf /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+# RUN cp -Rf /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 ADD docker/default /etc/nginx/sites-available/default
 
