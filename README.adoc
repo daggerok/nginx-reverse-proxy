@@ -10,6 +10,13 @@
 [source,bash]
 ----
 docker build -t ololo . --no-cache
-docker run --rm -d -p 80:80 --name ololo ololo
+docker run --rm -d -p 80:80 -p --name trololo ololo
+#docker run --rm -d -p 80:80 -p 443:443 --name trololo ololo
 curl localhost/
+----
+
+.https
+[source,bash]
+----
+docker exec -it trololo /bin/bash
 ----

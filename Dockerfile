@@ -2,15 +2,29 @@ FROM ubuntu:17.10
 MAINTAINER Maksim Kostromin https://github.com/daggerok
 
 CMD service nginx restart; npm start
+#CMD service nginx restart; certbot renew; npm start
 
 RUN apt update \
  && apt install -y \
     nginx \
     nodejs npm \
     unattended-upgrades \
-    fail2ban # && cp -Rf /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-
-# RUN cp -Rf /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+    fail2ban # && cp -Rf /etc/fail2ban/jail.conf /etc/fail2ban/jail.local \
+#    software-properties-common \
+# && add-apt-repository -y ppa:certbot/certbot \
+# && apt update \
+# && apt install -y python-certbot-nginx
+#RUN service nginx restart \
+# && certbot -m daggerok@gmail.com \
+#      -n --agree-tos \
+#      --nginx || true
+## && export DEBIAN_FRONTEND=noninteractive \
+## && apt-get install -q -y python-certbot-nginx
+##RUN service nginx restart \
+## && certbot -m daggerok@gmail.com \
+##      --domains nginx-reverse-proxy.daggerok.github.io,www.nginx-reverse-proxy.daggerok.github.io \
+##      -n --agree-tos \
+##      --nginx certonly || true
 
 ADD docker/nginx.conf /etc/nginx/nginx.conf
 ADD docker/default    /etc/nginx/sites-available/default
