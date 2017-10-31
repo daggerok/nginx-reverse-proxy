@@ -8,11 +8,11 @@
     "forever": "0.15.3"
   },
   "devDependencies": {
-    "@types/express": "4.0.38",
+    "@types/express": "4.0.39",
     "@types/node": "8.0.47"
   },
   "scripts": {
     "start": "forever stopall; forever -o logs-out.log -e logs-err.log app >> logs-forever.log",
-    "stop": "forever stopall"
+    "stop": "forever stopall || true"
   }
 }
