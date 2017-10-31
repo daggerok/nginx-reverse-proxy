@@ -49,14 +49,17 @@ before_install:
   - npm i -g yarn npm-check-updates
 
 script:
+  - npm i --no-optional --production
   - docker build -t nginx-reverse-proxy .
   - docker run --rm -d -p 80:80 --name nginx-reverse-proxy nginx-reverse-proxy
-  - sleep 1
+  - sleep 5
   - http :80
   - docker rm -f -v nginx-reverse-proxy
 
-  - npm i --no-optional --production
+  - rm -rf node_modules/
   - npm i --no-optional
+
+  - rm -rf node_modules/
   - yarn -i
   - yarn start &
   - sleep 5
