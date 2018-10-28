@@ -1,0 +1,31 @@
+version: '2.2'
+services:
+  node-web-app:
+    build: ./node-web-app
+    networks:
+      my-application.com:
+        aliases:
+        - node-web-app
+    healthcheck:
+      test: wget --quiet --tries=1 --spider http://127.0.0.1:3000/ || exit 1
+      retries: 33
+      timeout: 1s
+      interval: 5s
+  nginx-reverse-proxy:
+    depends_on:
+      node-web-app:
+        condition: service_healthy
+    build: ./nginx-proxy
+    ports: ['80:80']
+    networks:
+      my-application.com:
+        aliases:
+        - nginx-proxy
+    healthcheck:
+      test: wget --quiet --tries=1 --spider http://127.0.0.1:80/ || exit 1
+      retries: 33
+      timeout: 1s
+      interval: 5s
+networks:
+  my-application.com:
+    driver: bridge
