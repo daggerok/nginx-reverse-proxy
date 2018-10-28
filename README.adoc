@@ -1,22 +1,15 @@
-= nginx reverse proxy | redirect port image:https://travis-ci.org/daggerok/nginx-reverse-proxy.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/nginx-reverse-proxy"]
+= nginx reverse proxy image:https://travis-ci.org/daggerok/nginx-reverse-proxy.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/nginx-reverse-proxy"]
 
 .This repository contains simple example of nginx reverse-proxy / http port forwarding to node 3000
 [source,bash]
 ----
-  internet <-> [nginx :80] <-> [node :3000]
+  internet <-> [nginx-reverse-proxy:80] <-> [node-web-app:3000]
 ----
 
-.build and run using docker
+.test
 [source,bash]
 ----
-docker build -t ololo . --no-cache
-docker run --rm -d -p 80:80 -p --name trololo ololo
-#docker run --rm -d -p 80:80 -p 443:443 --name trololo ololo
-curl localhost/
-----
-
-.https
-[source,bash]
-----
-docker exec -it trololo /bin/bash
+docker-compose up -V --build --remove-orphans --force-recreate
+http :80
+docker-compose down -v
 ----

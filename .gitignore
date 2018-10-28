@@ -1,6 +1,7 @@
 node_modules/
 .idea/
 .DS_Store
-yarn.lock
-package-lock.json
 *.log
+*.iml
+*.ipr
+*.iws
