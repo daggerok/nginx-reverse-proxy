@@ -14,7 +14,7 @@ before_install:
 
 script:
 - docker-compose up -V --build --remove-orphans --force-recreate &
-- while [[ $(docker ps -n 2 -qf health=healthy | wc -l) -lt 1 ]] ; do echo -ne '.' ; done
+- while [[ $(docker ps -n 2 -qf health=healthy | wc -l) -lt 2 ]] ; do echo -ne '.' ; done
 - http :80
 - for c in $(docker ps -aq) ; do docker rm -f -v $c ; done;
 - for i in $(docker images -aq) ; do docker rmi -f $i ; done;
